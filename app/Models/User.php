@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 // Issuing API Tokens with Sanctum
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Tweet; // import model
 
 class User extends Authenticatable
 {
-    use HasApiTokens; 
+    use HasApiTokens;
     use HasFactory, Notifiable;
 
     /**
@@ -44,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // use hasMany relation with foreignkey & reduce read query
+    public function tweets(){
+        return $this->hasMany(Tweet::class);
+    }
+
 }

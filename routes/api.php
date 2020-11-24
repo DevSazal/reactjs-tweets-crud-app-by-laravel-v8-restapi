@@ -26,5 +26,5 @@ Route::post('/login', [API\AuthController::class, 'loginUser']);
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
   // All Secure API URL
-
+  Route::post('/tweet-store', [API\TweetController::class, 'storeTweet']);
 });
