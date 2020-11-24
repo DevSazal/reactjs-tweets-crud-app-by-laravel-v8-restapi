@@ -9,6 +9,7 @@ use Validator; // validator class for rules
 // To Make Tweet
 use App\Models\Tweet;
 use App\Models\User;
+use Auth;
 
 class TweetController extends Controller
 {
@@ -86,7 +87,7 @@ class TweetController extends Controller
 
     public function deleteTweet($id)
     {
-      // code...
+      // code... softDeletes
         $tweet = Tweet::find($id);
         $result = $tweet->delete();
 

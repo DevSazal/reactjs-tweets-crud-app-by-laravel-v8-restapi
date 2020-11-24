@@ -28,7 +28,11 @@ Route::group(['middleware'=>'auth:sanctum'], function(){
   // All Secure API URL
   Route::get('/tweet/{id?}', [API\TweetController::class, 'getTweetAPI']);
   Route::post('/tweet-store', [API\TweetController::class, 'storeTweet']);
-  Route::get('/{username?}', [API\TweetController::class, 'getTweetByUsernameAPI']);
+  Route::get('/u/{username?}', [API\TweetController::class, 'getTweetByUsernameAPI']); // change route url for Conflict problem
   Route::put('/tweet-update/{id}', [API\TweetController::class, 'updateTweetPutAPI']);
   Route::delete('/tweet-delete/{id}', [API\TweetController::class, 'deleteTweet']);
+
+  // Trashed Tweets & Recovery for Admin
+  Route::get('/tweet-trashed', [API\PrivateController::class, 'trashedTweet']);
+  Route::get('/tweet-restore/{id}', [API\PrivateController::class, 'restoreTweet'])->where('id', '[0-9]+');
 });
