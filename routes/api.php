@@ -26,5 +26,9 @@ Route::post('/login', [API\AuthController::class, 'loginUser']);
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
   // All Secure API URL
+  Route::get('/tweet/{id?}', [API\TweetController::class, 'getTweetAPI']);
   Route::post('/tweet-store', [API\TweetController::class, 'storeTweet']);
+  Route::get('/{username?}', [API\TweetController::class, 'getTweetByUsernameAPI']);
+  Route::put('/tweet-update/{id}', [API\TweetController::class, 'updateTweetPutAPI']);
+  Route::delete('/tweet-delete/{id}', [API\TweetController::class, 'deleteTweet']);
 });
