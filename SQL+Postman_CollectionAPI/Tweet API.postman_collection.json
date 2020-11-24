@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "23a6f94d-a6e2-4ebb-b382-153abf00932a",
+		"name": "Tweet API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/login/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "maliha_mou",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				},
+				"description": "login"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet-store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "message",
+							"value": "ok",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/tweet-store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet-store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet/2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet",
+						"2"
+					]
+				},
+				"description": "tweet listed by id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/u/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						""
+					]
+				},
+				"description": "all tweets"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/u/maliha_mou",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/maliha_mou",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maliha_mou"
+					]
+				},
+				"description": "tweet listed by username as profile"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet-update/3?message=one day I will be there %23win",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet-update/3?message=one day I will be there %23win",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet-update",
+						"3"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "one day I will be there #win"
+						}
+					]
+				},
+				"description": "tweet message update with id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet-delete/5",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet-delete/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet-delete",
+						"5"
+					]
+				},
+				"description": "tweet soft delete by id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet-trashed",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5|hJxVJ9OGSQ3UxGhBbQOcgp5pZQPClpnRw5DFIrHr",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet-trashed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet-trashed"
+					]
+				},
+				"description": "only Trashed Tweets (list)"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/tweet-restore/5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5|hJxVJ9OGSQ3UxGhBbQOcgp5pZQPClpnRw5DFIrHr",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/tweet-restore/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet-restore",
+						"5"
+					]
+				},
+				"description": "Tweet restore by id"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "4|6QYncyZJBWXBbWVykaTztZy1H6WIDzQzFI1SkRSq",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f38d4402-1ff3-4e75-89fe-04e60cc196ae",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b9ea8063-cd3b-4292-9aac-13d267c4cd23",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
