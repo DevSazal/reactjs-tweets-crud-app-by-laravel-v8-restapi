@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// Add API Directory
+use App\Http\Controllers\API;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// API Login
+Route::post('/login', [API\AuthController::class, 'loginUser']);
+
+Route::group(['middleware'=>'auth:sanctum'], function(){
+  // All Secure API URL
+
 });
