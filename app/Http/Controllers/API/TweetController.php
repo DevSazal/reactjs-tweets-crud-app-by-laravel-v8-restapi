@@ -17,7 +17,7 @@ class TweetController extends Controller
     public function getTweetAPI($id = NULL)
     {
       // code... all tweets or tweet listed by user_id
-      return $id ? Tweet::where('id', $id)->get() : Tweet::all();
+      return $id ? Tweet::where('id', $id)->get() : Tweet::with('User')->get();
     }
 
     public function getTweetByUsernameAPI($username = NULL)
