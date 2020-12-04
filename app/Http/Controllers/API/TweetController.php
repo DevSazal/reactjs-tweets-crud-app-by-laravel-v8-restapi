@@ -17,7 +17,7 @@ class TweetController extends Controller
     public function getTweetAPI($id = NULL)
     {
       // code... all tweets or tweet listed by user_id
-      return $id ? Tweet::where('id', $id)->get() : Tweet::with('User')->paginate(2);
+      return $id ? Tweet::where('id', $id)->get() : Tweet::with('User')->orderBy('id', 'DESC')->paginate(2);
     }
 
     public function getTweetByUsernameAPI($username = NULL)
@@ -53,7 +53,8 @@ class TweetController extends Controller
           $result = $tweet->save();
 
           if($result){
-            return ["result" => "Tweet has been posted."];
+            // return ["result" => "Tweet has been posted."];
+            return response()->json($tweet);
           }else{
             return ["result" => "Tweet Operation Failed!"];
           }
