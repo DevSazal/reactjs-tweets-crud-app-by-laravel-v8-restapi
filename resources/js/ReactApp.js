@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MainPage from './pages/Main';
 import TestPage from './pages/Test';
+import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 
 function ReactApp() {
@@ -13,6 +14,7 @@ function ReactApp() {
             <Switch>
               {/* Router Bug Fixed:: you have use "exact" for root url or you have to keep root url route at the end of all defined route */}
               <Route path="/test" component={TestPage} />
+              <Route path="/login" component={LoginPage} />
               <Route path="/" component={MainPage} />
                   {/*
                     <Route path="/profile">

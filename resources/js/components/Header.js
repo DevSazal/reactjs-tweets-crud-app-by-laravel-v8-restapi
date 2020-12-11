@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from './../api.png';
+import api from './../pages/util/api'
+import {logOut} from './../pages/util/auth'
 
 class Header extends Component {
   render(){
@@ -39,9 +41,10 @@ class Header extends Component {
                                 </Link>
 
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <Link className="dropdown-item" to="/logout" >
-                                        Logout
+                                    <Link className="dropdown-item" onClick={() => api().post('/logout').then(() => logOut())} to="/login">
+                                        Sign Out
                                     </Link>
+
 
                                     <form id="logout-form" action="" method="POST" className="d-none">
 

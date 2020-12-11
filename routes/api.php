@@ -22,7 +22,7 @@ use App\Http\Controllers\API;
 // });
 
 // API Login
-Route::post('/login', [API\AuthController::class, 'loginUser']);
+Route::post('/login', [API\AuthController::class, 'loginUser']); // for mobile app 
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
   // All Secure API URL
@@ -37,5 +37,5 @@ Route::group(['middleware'=>'auth:sanctum'], function(){
   Route::get('/tweet-restore/{id}', [API\PrivateController::class, 'restoreTweet'])->where('id', '[0-9]+');
 });
 
-Route::get('/tweet/{id?}', [API\TweetController::class, 'getTweetAPI']);
-Route::post('/tweet-store', [API\TweetController::class, 'storeTweet']);
+Route::get('/tweet/{id?}', [API\TweetController::class, 'getTweetAPI'])->middleware('auth:sanctum');
+Route::post('/tweet-store', [API\TweetController::class, 'storeTweet'])->middleware('auth:sanctum');

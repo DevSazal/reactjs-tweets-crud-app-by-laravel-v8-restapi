@@ -5,11 +5,15 @@ import axios from 'axios';
 import Pagination from "react-js-pagination";
 import moment from 'moment'; // to convert timestamp to human format
 
+import Cookies from 'js-cookie';
+import { Redirect } from "react-router-dom";
+import TimeAgo from 'react-timeago'; // time ago
+
 
 class Main extends Component {
   constructor(props){
     super(props);
-
+    let user;
     this.state = {
       tweets: [],
       activePage: 1,
@@ -18,13 +22,14 @@ class Main extends Component {
       pageRangeDisplayed: 5,
       // for new tweet
       message: '',
-      user_id: 1,
+      user_id: null,
       result: '',
       error: []
     };
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleTweetSubmit = this.handleTweetSubmit.bind(this);
+    this.convertTime = this.convertTime.bind(this);
   }
 
   UNSAFE_componentWillMount(){
@@ -38,11 +43,15 @@ class Main extends Component {
     }).catch(error => {
       console.log(error);
     })
+    if(sessionStorage.getItem('user')){
+      const json = JSON.parse(sessionStorage.getItem('user'));
+      // console.log("json.parse");
+      this.setState({ user_id: json.uid });
+    }
   }
 
   // Pagination
   handlePageChange(pageNumber){
-    console.log('active page is '+pageNumber);
     console.log('/api/tweet?page='+pageNumber);
 
        axios.get('/api/tweet?page='+pageNumber)
@@ -94,9 +103,30 @@ class Main extends Component {
     });
   }
 
+  convertTime(created) {
+    // did not used
+    let date = new Date(created * 1000);
+    return date;
+  }
+
   render(){
     let value;
     console.log();
+    // Authorization Code Start
+    if( Cookies.get('SPA_is_user_logged_in') && sessionStorage.getItem('user') && localStorage.getItem('spa') ){
+      // console.log("AuthTrue");
+    }else {
+      return (<Redirect to={'/login'} />)
+    }
+    // Authorization Code END
+
+    let classgroup;
+    if(this.state.error.message){
+      classgroup = 'form-control is-invalid';
+    }else {
+      classgroup = 'form-control ';
+    }
+
     return(
       <div>
         <div className="container">
@@ -106,9 +136,11 @@ class Main extends Component {
                     <form onSubmit={this.handleTweetSubmit}>
                       <div className="form-group">
                         <label><b>What is in your mind?</b></label>
-                        <textarea className="form-control" onChange={this.handleMessageChange}
+                        <textarea className={classgroup} onChange={this.handleMessageChange}
                           id="exampleFormControlTextarea1" rows="4" value={this.state.message}></textarea>
-                          
+                          <div className="invalid-feedback">
+                            Please enter a message in the textarea.
+                          </div>
                       </div>
 
 
@@ -116,6 +148,7 @@ class Main extends Component {
                     </form>
 
                 </div>
+
             </div>
             <br/>
 
@@ -126,7 +159,7 @@ class Main extends Component {
                     return value;
                   }) */}
                   {this.state.tweets.map( (tweet, i) => {
-                    let username = tweet.user ? tweet.user.username : 'maliha_mou';
+                    let username = tweet.user ? tweet.user.username : localStorage.getItem('spa');
                     value = <div key={i}><div className="card" >
                         <div className="card-body">
                           <h4><Link to="/test">{tweet.message}</Link></h4>
@@ -134,6 +167,7 @@ class Main extends Component {
 
                         </div>
                         <div className="card-header"><b>@{username}</b> | <span className="sp-color">{moment(tweet.created_at).fromNow()}</span></div>
+                        {/* <div className="card-header"><b>@{username}</b> | <span className="sp-color"><TimeAgo date={this.convertTime(moment(tweet.created_at).unix())} /></span></div> */}
                     </div><br/></div>;
                     return value;
                   })}
@@ -161,6 +195,10 @@ class Main extends Component {
       </div>
     );
   }
+}
+
+Main.defaultProps = {
+  // user: []
 }
 
 export default Main;
