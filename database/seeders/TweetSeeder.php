@@ -18,7 +18,7 @@ class TweetSeeder extends Seeder
     public function run()
     {
         // add user and admin by Seeder
-        DB::table('users')->insert([
+        DB::table('tweets')->insert([
           [
             'message' => 'I was a great party!',
             'user_id' => 1,
