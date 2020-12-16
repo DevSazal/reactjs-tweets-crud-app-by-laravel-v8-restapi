@@ -93339,7 +93339,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function api() {
   var api = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: '',
     withCredentials: true
   }); // api.interceptors.response.use(response => response, error => {
   //     if (error.response.status === 401) {
