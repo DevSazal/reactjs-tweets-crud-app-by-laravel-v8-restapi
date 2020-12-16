@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->boolean('role')->default(0);
+            $table->integer('role')->default(0);
             $table->string('role_type')->default('user');
             $table->date('date_of_birth')->nullable();
             $table->text('profile_photo_path')->nullable();

@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         // Calling Additional Seeders
         $this->call([
           UserSeeder::class,
-          
+          TweetSeeder::class,
+
         ]);
 
         $this->command->info('User table seeded!');
